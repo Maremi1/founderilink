@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ParticleNetwork } from "@/components/ParticleNetwork";
 import logo from "@/assets/founder-logo.jpeg";
+import heroVideo from "@/assets/hero-ambient.mp4.asset.json";
 import { motion } from "framer-motion";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 
@@ -8,7 +9,17 @@ export const Hero = () => {
   return (
     <section id="top" className="relative isolate overflow-hidden pt-32 pb-24 md:pt-40 md:pb-32">
       <div className="absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
-      <div className="absolute inset-0 -z-10 bg-blueprint opacity-60" />
+      <video
+        className="absolute inset-0 -z-10 h-full w-full object-cover opacity-40 motion-reduce:hidden"
+        src={heroVideo.url}
+        autoPlay
+        loop
+        muted
+        playsInline
+        aria-hidden
+      />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/40 via-background/70 to-background" />
+      <div className="absolute inset-0 -z-10 bg-blueprint opacity-50" />
       <div className="absolute inset-0 -z-10">
         <ParticleNetwork />
       </div>

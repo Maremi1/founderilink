@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ShieldCheck, EyeOff, GitBranch } from "lucide-react";
+import shield from "@/assets/trust-shield-emblem.png";
 
 const items = [
   {
@@ -23,13 +24,28 @@ export const WhyTrust = () => {
   return (
     <section id="services" className="relative bg-surface-soft py-24 md:py-32">
       <div className="container">
-        <div className="mx-auto max-w-2xl text-center">
-          <div className="inline-block rounded-full border border-brand-blue/20 bg-brand-blue-soft px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand-blue">
-            Why Set Up a Trust
+        <div className="grid items-center gap-10 md:grid-cols-[auto_1fr]">
+          <motion.img
+            src={shield}
+            alt="Trust shield emblem"
+            width={1024}
+            height={1024}
+            loading="lazy"
+            initial={{ opacity: 0, y: 20, rotate: -6 }}
+            whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            whileHover={{ rotate: 3, scale: 1.04 }}
+            className="mx-auto h-32 w-32 md:h-44 md:w-44"
+          />
+          <div className="max-w-2xl text-center md:text-left">
+            <div className="inline-block rounded-full border border-brand-blue/20 bg-brand-blue-soft px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand-blue">
+              Why Set Up a Trust
+            </div>
+            <h2 className="mt-4 text-4xl font-bold text-brand-navy md:text-5xl">
+              More Control. More Protection. <span className="text-gradient-brand">Less Risk.</span>
+            </h2>
           </div>
-          <h2 className="mt-4 text-4xl font-bold text-brand-navy md:text-5xl">
-            More Control. More Protection. <span className="text-gradient-brand">Less Risk.</span>
-          </h2>
         </div>
 
         <div className="mt-16 grid gap-6 md:grid-cols-3">
