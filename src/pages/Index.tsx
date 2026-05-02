@@ -11,6 +11,8 @@ import { Footprint } from "@/components/sections/Footprint";
 import { Founder } from "@/components/sections/Founder";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/sections/Footer";
+import { Gallery } from "@/components/sections/Gallery";
+import { Marquee } from "@/components/sections/Marquee";
 
 const Index = () => {
   return (
@@ -18,9 +20,11 @@ const Index = () => {
       <Navbar />
       <Hero />
       <Blueprint />
+      <Marquee />
       <WhyTrust />
       <TrustVsWill />
       <Audience />
+      <Gallery />
       <Architecture />
       <Process />
       <Pyramid />
