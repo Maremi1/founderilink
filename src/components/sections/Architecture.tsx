@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Layers, Building, LifeBuoy } from "lucide-react";
+import boardroom from "@/assets/boardroom.jpg";
 
 const pillars = [
   {
@@ -62,8 +63,29 @@ export const Architecture = () => {
             ))}
           </div>
 
-          <div className="relative flex items-center justify-center">
-            <div className="absolute inset-0 rounded-3xl bg-grid opacity-40" />
+          <div className="relative flex flex-col items-center gap-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="group relative w-full overflow-hidden rounded-3xl shadow-elegant"
+            >
+              <img
+                src={boardroom}
+                alt="Advisory boardroom"
+                width={1280}
+                height={896}
+                loading="lazy"
+                className="h-56 w-full object-cover transition-transform duration-[2000ms] ease-out group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/70 to-transparent" />
+              <div className="absolute bottom-4 left-5 text-white">
+                <div className="text-[10px] uppercase tracking-[0.2em] text-brand-gold">In Counsel</div>
+                <div className="text-lg font-semibold">Advisory Boardroom</div>
+              </div>
+            </motion.div>
+            <div className="absolute inset-0 rounded-3xl bg-grid opacity-30 -z-10" />
             <motion.div
               key={active}
               initial={{ opacity: 0, scale: 0.95 }}

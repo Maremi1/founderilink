@@ -13,6 +13,7 @@ import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/sections/Footer";
 import { Gallery } from "@/components/sections/Gallery";
 import { Marquee } from "@/components/sections/Marquee";
+import { Insights } from "@/components/sections/Insights";
 
 const Index = () => {
   return (
@@ -28,6 +29,7 @@ const Index = () => {
       <Architecture />
       <Process />
       <Pyramid />
+      <Insights />
       <Footprint />
       <Founder />
       <Contact />

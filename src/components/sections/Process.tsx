@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import signing from "@/assets/signing.jpg";
 
 const phases = [
   {
@@ -37,6 +38,32 @@ export const Process = () => {
             Two Phases. <span className="text-gradient-brand">One Legacy.</span>
           </h2>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.8 }}
+          className="relative mx-auto mt-14 max-w-4xl overflow-hidden rounded-3xl shadow-elegant"
+        >
+          <img
+            src={signing}
+            alt="Signing legal documents with a fountain pen"
+            width={1280}
+            height={720}
+            loading="lazy"
+            className="h-64 w-full object-cover md:h-80"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/85 via-brand-navy/40 to-transparent" />
+          <div className="absolute inset-0 flex items-center">
+            <div className="max-w-md p-8 text-white md:p-12">
+              <div className="text-xs uppercase tracking-[0.25em] text-brand-gold">Engineered Continuity</div>
+              <div className="mt-3 font-serif text-2xl italic md:text-3xl">
+                "Every signature is a brick in the architecture of tomorrow."
+              </div>
+            </div>
+          </div>
+        </motion.div>
 
         <div ref={ref} className="relative mx-auto mt-20 max-w-3xl">
           <div className="absolute left-4 top-0 bottom-0 w-px bg-border md:left-1/2" />
