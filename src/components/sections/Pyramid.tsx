@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import pyramidImg from "@/assets/pyramid-glass.jpg";
 
 const tiers = [
   { label: "Generational Legacy", w: 30, color: "hsl(var(--brand-gold))" },
@@ -30,6 +31,18 @@ export const Pyramid = () => {
         </div>
 
         <div className="relative mx-auto flex w-full max-w-md flex-col items-center gap-3 py-8">
+          <motion.img
+            src={pyramidImg}
+            alt="Glass pyramid representing layered wealth structuring"
+            width={1024}
+            height={1024}
+            loading="lazy"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 0.18, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.2 }}
+            className="pointer-events-none absolute inset-0 -z-0 m-auto h-full w-full object-contain"
+          />
           {tiers.map((t, i) => (
             <motion.div
               key={t.label}

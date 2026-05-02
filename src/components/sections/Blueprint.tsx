@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import blueprint from "@/assets/blueprint-tomorrow.jpg";
+import blueprint from "@/assets/blueprint-desk.jpg";
 
 export const Blueprint = () => {
   return (
@@ -14,7 +14,7 @@ export const Blueprint = () => {
         >
           <div className="absolute -inset-6 rounded-3xl bg-grid opacity-40" />
           <div className="relative overflow-hidden rounded-2xl shadow-elegant">
-            <img src={blueprint} alt="The blueprint of your tomorrow" className="h-full w-full object-cover" />
+            <img src={blueprint} alt="The blueprint of your tomorrow" width={1280} height={896} loading="lazy" className="h-full w-full object-cover" />
             <svg className="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
               <motion.path
                 d="M5 95 L50 5 L95 95 Z"
