@@ -1,4 +1,5 @@
 import portrait from "@/assets/founder-portrait.jpg";
+import deskPortrait from "@/assets/founder-desk.jpg";
 import { motion } from "framer-motion";
 
 export const Founder = () => {
@@ -13,6 +14,15 @@ export const Founder = () => {
           className="relative mx-auto w-full max-w-sm"
         >
           <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-brand-blue-soft to-brand-gold-soft" />
+          <motion.div
+            initial={{ opacity: 0, x: -30, y: 30 }}
+            whileInView={{ opacity: 1, x: 0, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, delay: 0.2 }}
+            className="absolute -left-10 -top-8 hidden h-40 w-32 overflow-hidden rounded-2xl border-4 border-background shadow-elegant md:block"
+          >
+            <img src={deskPortrait} alt="Founder at desk" width={1024} height={1280} loading="lazy" className="h-full w-full object-cover" />
+          </motion.div>
           <div className="relative overflow-hidden rounded-3xl shadow-elegant">
             <img src={portrait} alt="The Founder leadership" className="aspect-[4/5] w-full object-cover" />
           </div>
