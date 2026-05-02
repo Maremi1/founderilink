@@ -1,16 +1,35 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Navbar } from "@/components/Navbar";
+import { Hero } from "@/components/sections/Hero";
+import { Blueprint } from "@/components/sections/Blueprint";
+import { WhyTrust } from "@/components/sections/WhyTrust";
+import { TrustVsWill } from "@/components/sections/TrustVsWill";
+import { Audience } from "@/components/sections/Audience";
+import { Architecture } from "@/components/sections/Architecture";
+import { Process } from "@/components/sections/Process";
+import { Pyramid } from "@/components/sections/Pyramid";
+import { Footprint } from "@/components/sections/Footprint";
+import { Founder } from "@/components/sections/Founder";
+import { Contact } from "@/components/sections/Contact";
+import { Footer } from "@/components/sections/Footer";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
-    </div>
+    <main className="min-h-screen bg-background">
+      <Navbar />
+      <Hero />
+      <Blueprint />
+      <WhyTrust />
+      <TrustVsWill />
+      <Audience />
+      <Architecture />
+      <Process />
+      <Pyramid />
+      <Footprint />
+      <Founder />
+      <Contact />
+      <Footer />
+    </main>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
