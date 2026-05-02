@@ -14,7 +14,6 @@ import { Footer } from "@/components/sections/Footer";
 import { Gallery } from "@/components/sections/Gallery";
 import { Marquee } from "@/components/sections/Marquee";
 import { Insights } from "@/components/sections/Insights";
-import { Insights } from "@/components/sections/Insights";
 
 const Index = () => {
   return (
