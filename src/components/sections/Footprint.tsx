@@ -178,7 +178,6 @@ const AfricaMap = () => {
           </div>
         );
       })}
-      </div>
-    </section>
+    </div>
   );
 };
