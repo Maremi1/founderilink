@@ -72,27 +72,28 @@ export const Architecture = () => {
           </div>
 
           <div className="relative flex flex-col items-center gap-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="group relative w-full overflow-hidden rounded-3xl shadow-elegant"
-            >
-              <img
-                src={boardroom}
-                alt="Advisory boardroom"
-                width={1280}
-                height={896}
-                loading="lazy"
-                className="h-56 w-full object-cover transition-transform duration-[2000ms] ease-out group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/70 to-transparent" />
-              <div className="absolute bottom-4 left-5 text-white">
-                <div className="text-[10px] uppercase tracking-[0.2em] text-brand-gold">In Counsel</div>
-                <div className="text-lg font-semibold">Advisory Boardroom</div>
+            <div className="group relative w-full overflow-hidden rounded-3xl shadow-elegant">
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={pillars[active].image}
+                  src={pillars[active].image}
+                  alt={pillars[active].title}
+                  width={1280}
+                  height={896}
+                  loading="lazy"
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 1.02 }}
+                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  className="h-64 w-full object-cover transition-transform duration-[2000ms] ease-out group-hover:scale-110"
+                />
+              </AnimatePresence>
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-brand-navy/75 via-brand-navy/10 to-transparent" />
+              <div className="absolute bottom-4 left-5 right-5 text-white">
+                <div className="text-[10px] uppercase tracking-[0.2em] text-brand-gold">Pillar {active + 1}</div>
+                <div className="text-lg font-semibold">{pillars[active].caption}</div>
               </div>
-            </motion.div>
+            </div>
             <div className="absolute inset-0 rounded-3xl bg-grid opacity-30 -z-10" />
             <motion.div
               key={active}
