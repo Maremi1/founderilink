@@ -1,7 +1,9 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Layers, Building, LifeBuoy } from "lucide-react";
-import boardroom from "@/assets/boardroom.jpg";
+import pillarFamily from "@/assets/pillar-family-trust.jpg";
+import pillarCorporate from "@/assets/pillar-corporate.jpg";
+import pillarAdvisory from "@/assets/pillar-advisory.jpg";
 
 const pillars = [
   {
@@ -9,18 +11,24 @@ const pillars = [
     title: "Family Trust Setup",
     desc: "Expert drafting and official registration of family trusts. Strategic appointment of trustees, beneficiaries and custom terms.",
     points: ["Drafting & registration", "Trustee strategy", "Asset protection terms"],
+    image: pillarFamily,
+    caption: "Securing the Family Legacy",
   },
   {
     icon: Building,
     title: "Corporate Structuring",
     desc: "Restructuring businesses for tax efficiency. Holding company & trust ownership models. Founder exit and intergenerational transfer.",
     points: ["Tax-efficient restructuring", "Holdco & trust ownership", "Founder exit planning"],
+    image: pillarCorporate,
+    caption: "Architecting the Enterprise",
   },
   {
     icon: LifeBuoy,
     title: "Advisory & Ongoing Support",
     desc: "Annual trust reviews, rigorous corporate governance, ongoing trustee education and dedicated wealth planning for dependents.",
     points: ["Annual trust reviews", "Trustee education", "Wealth planning for heirs"],
+    image: pillarAdvisory,
+    caption: "Counsel for the Long Horizon",
   },
 ];
 
