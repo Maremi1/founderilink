@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
 import dar from "@/assets/dar-city.jpg";
 import kigali from "@/assets/kigali-city.jpg";
+import africaData from "@/assets/africa-paths.json";
 
 const cities = [
   { name: "Dar es Salaam", country: "Tanzania", x: "55%", y: "62%", img: dar },
@@ -59,96 +60,82 @@ export const Footprint = () => {
   );
 };
 
-// Approximate lon/lat -> SVG coords for our viewBox (0 0 500 600)
-// Africa bounding roughly: lon -20..55, lat 38..-35
-const project = (lon: number, lat: number) => {
-  const x = ((lon - -20) / (55 - -20)) * 500;
-  const y = ((38 - lat) / (38 - -35)) * 600;
-  return { x, y };
-};
+// Real Africa map rendered from GeoJSON country geometry
+const HIGHLIGHTED = new Set(["Rwanda", "Tanzania", "United Republic of Tanzania"]);
 
-const markers = [
-  { name: "Kigali", country: "Rwanda", lon: 30.06, lat: -1.94 },
-  { name: "Dar es Salaam", country: "Tanzania", lon: 39.28, lat: -6.82 },
+const { width: MAP_W, height: MAP_H, projectInfo, features: countries } =
+  africaData as {
+    width: number;
+    height: number;
+    projectInfo: { offsetX: number; offsetY: number; scale: number; minLon: number; maxLat: number };
+    features: { name: string; d: string }[];
+  };
+
+const projectLngLat = (lon: number, lat: number) => ({
+  x: projectInfo.offsetX + (lon - projectInfo.minLon) * projectInfo.scale,
+  y: projectInfo.offsetY + (projectInfo.maxLat - lat) * projectInfo.scale,
+});
+
+const cityMarkers = [
+  { name: "Kigali", country: "Rwanda", lon: 30.0619, lat: -1.9441 },
+  { name: "Dar es Salaam", country: "Tanzania", lon: 39.2083, lat: -6.7924 },
 ];
 
 const AfricaMap = () => {
+  const kigaliPt = projectLngLat(cityMarkers[0].lon, cityMarkers[0].lat);
+  const darPt = projectLngLat(cityMarkers[1].lon, cityMarkers[1].lat);
+
   return (
     <div className="relative mx-auto aspect-[5/6] w-full max-w-md">
-      <svg viewBox="0 0 500 600" className="absolute inset-0 h-full w-full" aria-label="Map of Africa highlighting Rwanda and Tanzania">
+      <svg
+        viewBox={`0 0 ${MAP_W} ${MAP_H}`}
+        className="absolute inset-0 h-full w-full"
+        aria-label="Map of Africa highlighting Rwanda and Tanzania"
+      >
         <defs>
-          <radialGradient id="mapglow" cx="50%" cy="50%" r="55%">
-            <stop offset="0%" stopColor="hsl(207 64% 46%)" stopOpacity="0.25" />
-            <stop offset="100%" stopColor="hsl(207 64% 46%)" stopOpacity="0" />
+          <radialGradient id="mapglow" cx="50%" cy="50%" r="60%">
+            <stop offset="0%" stopColor="hsl(41 60% 60%)" stopOpacity="0.18" />
+            <stop offset="100%" stopColor="hsl(41 60% 60%)" stopOpacity="0" />
           </radialGradient>
           <linearGradient id="continentFill" x1="0" x2="0" y1="0" y2="1">
-            <stop offset="0%" stopColor="hsl(220 30% 18%)" />
-            <stop offset="100%" stopColor="hsl(220 35% 12%)" />
+            <stop offset="0%" stopColor="hsl(220 30% 22%)" />
+            <stop offset="100%" stopColor="hsl(220 35% 14%)" />
+          </linearGradient>
+          <linearGradient id="highlightFill" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stopColor="hsl(41 70% 62%)" />
+            <stop offset="100%" stopColor="hsl(41 60% 48%)" />
           </linearGradient>
         </defs>
-        <ellipse cx="250" cy="320" rx="240" ry="280" fill="url(#mapglow)" />
 
-        {/* Africa continent (simplified outline) */}
-        <path
-          d="M 175 70
-             C 210 55, 270 55, 305 72
-             C 345 92, 380 95, 405 115
-             C 425 132, 420 158, 405 178
-             C 395 195, 388 215, 395 235
-             C 405 260, 410 285, 400 310
-             C 392 332, 378 350, 372 372
-             C 365 398, 355 420, 340 442
-             C 325 465, 310 488, 295 510
-             C 280 530, 262 545, 245 552
-             C 225 558, 208 548, 198 530
-             C 185 505, 175 478, 168 452
-             C 158 420, 148 388, 140 358
-             C 132 328, 122 300, 118 270
-             C 114 240, 118 210, 125 180
-             C 132 150, 148 118, 158 95
-             C 162 85, 168 76, 175 70 Z"
-          fill="url(#continentFill)"
-          stroke="hsl(41 60% 60% / 0.35)"
-          strokeWidth="1.2"
-        />
+        <rect x="0" y="0" width={MAP_W} height={MAP_H} fill="url(#mapglow)" />
 
-        {/* Madagascar */}
-        <path
-          d="M 388 408 C 395 420, 398 440, 392 460 C 388 472, 382 478, 378 470 C 374 455, 376 430, 384 412 Z"
-          fill="url(#continentFill)"
-          stroke="hsl(41 60% 60% / 0.35)"
-          strokeWidth="1"
-        />
+        {countries.map((c) => {
+          const highlighted = HIGHLIGHTED.has(c.name);
+          return (
+            <motion.path
+              key={c.name}
+              d={c.d}
+              fill={highlighted ? "url(#highlightFill)" : "url(#continentFill)"}
+              stroke={highlighted ? "hsl(41 70% 70%)" : "hsl(41 60% 60% / 0.25)"}
+              strokeWidth={highlighted ? 1.2 : 0.6}
+              initial={highlighted ? { opacity: 0 } : false}
+              whileInView={highlighted ? { opacity: 1 } : undefined}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9 }}
+            >
+              <title>{c.name}</title>
+            </motion.path>
+          );
+        })}
 
-        {/* Highlighted region: Tanzania (approx) */}
+        {/* Dashed arc between the two cities */}
         <motion.path
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          d="M 318 360 L 360 358 L 372 378 L 368 405 L 350 418 L 320 415 L 308 395 L 308 372 Z"
-          fill="hsl(41 60% 60% / 0.35)"
-          stroke="hsl(41 60% 60%)"
-          strokeWidth="1.5"
-        />
-        {/* Highlighted region: Rwanda (small) */}
-        <motion.path
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.2 }}
-          d="M 314 354 L 326 352 L 330 362 L 322 368 L 312 364 Z"
-          fill="hsl(41 60% 60% / 0.55)"
-          stroke="hsl(41 60% 60%)"
-          strokeWidth="1.5"
-        />
-
-        {/* Connecting arc between the two cities */}
-        <motion.path
-          d={`M ${project(markers[0].lon, markers[0].lat).x} ${project(markers[0].lon, markers[0].lat).y} Q 360 340 ${project(markers[1].lon, markers[1].lat).x} ${project(markers[1].lon, markers[1].lat).y}`}
+          d={`M ${kigaliPt.x} ${kigaliPt.y} Q ${(kigaliPt.x + darPt.x) / 2} ${
+            Math.min(kigaliPt.y, darPt.y) - 30
+          } ${darPt.x} ${darPt.y}`}
           fill="none"
-          stroke="hsl(41 60% 60%)"
-          strokeWidth="1.2"
+          stroke="hsl(41 70% 65%)"
+          strokeWidth="1.4"
           strokeDasharray="4 4"
           initial={{ pathLength: 0 }}
           whileInView={{ pathLength: 1 }}
@@ -157,13 +144,13 @@ const AfricaMap = () => {
         />
       </svg>
 
-      {markers.map((m, i) => {
-        const { x, y } = project(m.lon, m.lat);
+      {cityMarkers.map((m, i) => {
+        const { x, y } = projectLngLat(m.lon, m.lat);
         return (
           <div
             key={m.name}
             className="absolute -translate-x-1/2 -translate-y-1/2"
-            style={{ left: `${(x / 500) * 100}%`, top: `${(y / 600) * 100}%` }}
+            style={{ left: `${(x / MAP_W) * 100}%`, top: `${(y / MAP_H) * 100}%` }}
           >
             <motion.div
               className="absolute left-1/2 top-1/2 -ml-4 -mt-4 h-8 w-8 rounded-full bg-brand-gold/40"
@@ -173,7 +160,9 @@ const AfricaMap = () => {
             <div className="relative h-3 w-3 rounded-full bg-brand-gold ring-4 ring-brand-navy" />
             <div className="mt-2 whitespace-nowrap text-xs font-semibold text-white">
               {m.name}
-              <span className="ml-1 text-[10px] uppercase tracking-widest text-brand-gold/80">{m.country}</span>
+              <span className="ml-1 text-[10px] uppercase tracking-widest text-brand-gold/80">
+                {m.country}
+              </span>
             </div>
           </div>
         );
