@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
 import dar from "@/assets/dar-city.jpg";
 import kigali from "@/assets/kigali-city.jpg";
+import africaData from "@/assets/africa-paths.json";
 
 const cities = [
   { name: "Dar es Salaam", country: "Tanzania", x: "55%", y: "62%", img: dar },
