@@ -61,17 +61,17 @@ export const Audience = () => {
               whileHover={{ y: -10 }}
               className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-soft transition-shadow hover:shadow-elegant"
             >
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-56 overflow-hidden ring-1 ring-inset ring-border/40">
                 <img
                   src={a.image}
                   alt={a.alt}
                   width={800}
                   height={640}
                   loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                  className="h-full w-full object-cover brightness-105 saturate-[1.1] transition-transform duration-700 ease-out group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
-                <div className="absolute bottom-3 left-3 flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-card/90 shadow-soft backdrop-blur-sm">
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-card/70 via-transparent to-transparent" />
+                <div className="absolute bottom-3 left-3 flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-card/95 shadow-soft backdrop-blur-sm">
                   <a.icon className="h-5 w-5 text-brand-blue transition-colors duration-500 group-hover:text-brand-gold" strokeWidth={1.6} />
                 </div>
               </div>
