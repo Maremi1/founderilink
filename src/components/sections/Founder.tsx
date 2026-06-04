@@ -1,5 +1,7 @@
-import portrait from "@/assets/founder-portrait.jpg";
-import deskPortrait from "@/assets/founder-desk.jpg";
+import portraitAsset from "@/assets/founder-portrait.jpeg.asset.json";
+import deskPortraitAsset from "@/assets/founder-desk.jpeg.asset.json";
+const portrait = portraitAsset.url;
+const deskPortrait = deskPortraitAsset.url;
 import { motion } from "framer-motion";
 
 export const Founder = () => {
