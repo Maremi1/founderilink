@@ -1,24 +1,10 @@
 import { motion } from "framer-motion";
-import { ShieldCheck, EyeOff, GitBranch } from "lucide-react";
+import { ShieldCheck, EyeOff, GitBranch, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import shield from "@/assets/trust-shield-emblem.png";
+import { services } from "@/data/services";
 
-const items = [
-  {
-    icon: ShieldCheck,
-    title: "Asset Protection",
-    desc: "Shield your assets from lawsuits, divorce settlements, and creditor claims with structures built to endure.",
-  },
-  {
-    icon: EyeOff,
-    title: "Absolute Privacy",
-    desc: "Keep your estate entirely out of public records — discretion engineered into every layer.",
-  },
-  {
-    icon: GitBranch,
-    title: "Succession Certainty",
-    desc: "Prevent legal delays and reduce family disputes with crystal-clear, legally fortified transitions.",
-  },
-];
+const iconMap = { ShieldCheck, EyeOff, GitBranch };
 
 export const WhyTrust = () => {
   return (
@@ -49,27 +35,45 @@ export const WhyTrust = () => {
         </div>
 
         <div className="mt-16 grid gap-6 md:grid-cols-3">
-          {items.map((it, i) => (
-            <motion.div
-              key={it.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              whileHover={{ y: -8 }}
-              className="group relative overflow-hidden rounded-2xl border border-border bg-card p-8 shadow-soft transition-shadow hover:shadow-elegant"
-            >
-              <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-brand-blue-soft opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-              <div className="relative">
-                <div className="inline-flex h-14 w-14 items-center justify-center rounded-xl bg-brand-navy text-white shadow-glow transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110">
-                  <it.icon className="h-6 w-6" />
+          {services.map((it, i) => {
+            const Icon = iconMap[it.icon];
+            return (
+              <motion.div
+                key={it.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                whileHover={{ y: -8 }}
+                className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-soft transition-shadow hover:shadow-elegant"
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={it.image}
+                    alt={`${it.title} — editorial visual`}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/80 via-brand-navy/20 to-transparent" />
+                  <div className="absolute left-5 top-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white/95 text-brand-navy shadow-glow backdrop-blur transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110">
+                    <Icon className="h-5 w-5" />
+                  </div>
                 </div>
-                <h3 className="mt-6 text-2xl font-bold text-brand-navy">{it.title}</h3>
-                <p className="mt-3 text-muted-foreground">{it.desc}</p>
-                <div className="mt-6 h-0.5 w-12 bg-brand-gold transition-all duration-500 group-hover:w-24" />
-              </div>
-            </motion.div>
-          ))}
+                <div className="relative flex flex-1 flex-col p-8">
+                  <h3 className="text-2xl font-bold text-brand-navy">{it.title}</h3>
+                  <p className="mt-3 text-muted-foreground">{it.desc}</p>
+                  <div className="mt-6 h-0.5 w-12 bg-brand-gold transition-all duration-500 group-hover:w-24" />
+                  <Link
+                    to={`/services/${it.slug}`}
+                    className="mt-6 inline-flex w-fit items-center gap-2 rounded-full border border-brand-navy/20 px-4 py-2 text-sm font-semibold text-brand-navy transition-all hover:border-brand-blue hover:bg-brand-blue hover:text-white"
+                  >
+                    Learn more
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
