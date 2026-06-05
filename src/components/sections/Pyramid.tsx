@@ -2,10 +2,10 @@ import { motion } from "framer-motion";
 import pyramidImg from "@/assets/pyramid-glass.jpg";
 
 const tiers = [
-  { label: "Generational Legacy", w: 30, color: "hsl(var(--brand-gold))" },
-  { label: "Wealth Transition", w: 50, color: "hsl(var(--brand-blue))" },
-  { label: "Asset Protection", w: 70, color: "hsl(var(--brand-navy))" },
-  { label: "Foundation & Governance", w: 90, color: "hsl(215 50% 30%)" },
+  { label: "Generational Legacy", w: 42, color: "hsl(var(--brand-gold))" },
+  { label: "Wealth Transition", w: 60, color: "hsl(var(--brand-blue))" },
+  { label: "Asset Protection", w: 78, color: "hsl(var(--brand-navy))" },
+  { label: "Foundation & Governance", w: 96, color: "hsl(215 50% 30%)" },
 ];
 
 export const Pyramid = () => {
@@ -51,9 +51,9 @@ export const Pyramid = () => {
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, delay: (tiers.length - 1 - i) * 0.15 }}
               style={{ width: `${t.w}%`, background: t.color }}
-              className="relative flex h-16 items-center justify-center rounded-md text-sm font-semibold uppercase tracking-wider text-white shadow-elegant"
+              className="relative flex h-16 items-center justify-center rounded-md px-4 text-center text-[11px] sm:text-xs md:text-sm font-semibold uppercase tracking-wider leading-tight text-white shadow-elegant whitespace-nowrap"
             >
-              {t.label}
+              <span className="block w-full text-center">{t.label}</span>
             </motion.div>
           ))}
         </div>
