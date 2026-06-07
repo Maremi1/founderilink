@@ -1,6 +1,9 @@
 import protectionAsset from "@/assets/service-protection.jpg.asset.json";
 import privacyAsset from "@/assets/service-privacy.jpg.asset.json";
 import successionAsset from "@/assets/service-succession.jpg.asset.json";
+import detailProtectionAsset from "@/assets/detail-protection.jpg.asset.json";
+import detailPrivacyAsset from "@/assets/detail-privacy.jpg.asset.json";
+import detailSuccessionAsset from "@/assets/detail-succession.jpg.asset.json";
 
 export type Service = {
   slug: string;
@@ -8,6 +11,7 @@ export type Service = {
   tagline: string;
   desc: string;
   image: string;
+  detailImage: string;
   icon: "ShieldCheck" | "EyeOff" | "GitBranch";
   highlights: { title: string; body: string }[];
   benefits: string[];
@@ -21,6 +25,7 @@ export const services: Service[] = [
     desc: "Shield your assets from lawsuits, divorce settlements, and creditor claims with structures built to endure.",
     image: protectionAsset.url,
     icon: "ShieldCheck",
+    detailImage: detailProtectionAsset.url,
     highlights: [
       { title: "Lawsuit Shielding", body: "Insulate operating assets from frivolous litigation through layered trust architecture." },
       { title: "Creditor Resistance", body: "Place wealth beyond the reach of future creditors using jurisdictionally tested structures." },
@@ -40,6 +45,7 @@ export const services: Service[] = [
     desc: "Keep your estate entirely out of public records — discretion engineered into every layer.",
     image: privacyAsset.url,
     icon: "EyeOff",
+    detailImage: detailPrivacyAsset.url,
     highlights: [
       { title: "Off-Record Ownership", body: "Hold property and equity through nominee and fiduciary structures that remove your name from public registries." },
       { title: "Confidential Succession", body: "Transfer assets without probate exposure or media-readable filings." },
@@ -59,6 +65,7 @@ export const services: Service[] = [
     desc: "Prevent legal delays and reduce family disputes with crystal-clear, legally fortified transitions.",
     image: successionAsset.url,
     icon: "GitBranch",
+    detailImage: detailSuccessionAsset.url,
     highlights: [
       { title: "Probate-Free Transfer", body: "Move assets to heirs instantly upon trigger events — no court, no waiting." },
       { title: "Conflict Prevention", body: "Codified intent and neutral trusteeship prevent intra-family disputes before they begin." },
