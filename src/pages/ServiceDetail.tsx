@@ -55,7 +55,7 @@ const ServiceDetail = () => {
               <p className="mt-6 text-foreground/80">{service.desc}</p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button asChild className="bg-brand-navy hover:bg-brand-blue">
-                  <a href="/#contact">Book Consultation</a>
+                  <a href="https://wa.me/255765658595?text=Hello%2C%20I%20would%20like%20to%20book%20a%20consultation%20regarding%20your%20services." target="_blank" rel="noopener noreferrer">Book Consultation</a>
                 </Button>
                 <Button asChild variant="outline">
                   <Link to="/#services">All Services</Link>
