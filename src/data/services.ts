@@ -25,6 +25,7 @@ export const services: Service[] = [
     desc: "Shield your assets from lawsuits, divorce settlements, and creditor claims with structures built to endure.",
     image: protectionAsset.url,
     icon: "ShieldCheck",
+    detailImage: detailProtectionAsset.url,
     highlights: [
       { title: "Lawsuit Shielding", body: "Insulate operating assets from frivolous litigation through layered trust architecture." },
       { title: "Creditor Resistance", body: "Place wealth beyond the reach of future creditors using jurisdictionally tested structures." },
