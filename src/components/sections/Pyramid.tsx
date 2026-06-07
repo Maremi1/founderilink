@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 import pyramidImg from "@/assets/pyramid-glass.jpg";
 
 const tiers = [
-  { label: "Generational Legacy", w: 42, color: "hsl(var(--brand-gold))" },
-  { label: "Wealth Transition", w: 60, color: "hsl(var(--brand-blue))" },
-  { label: "Asset Protection", w: 78, color: "hsl(var(--brand-navy))" },
+  { label: "Generational Legacy", w: 58, color: "hsl(var(--brand-gold))" },
+  { label: "Wealth Transition", w: 70, color: "hsl(var(--brand-blue))" },
+  { label: "Asset Protection", w: 83, color: "hsl(var(--brand-navy))" },
   { label: "Foundation & Governance", w: 96, color: "hsl(215 50% 30%)" },
 ];
 
