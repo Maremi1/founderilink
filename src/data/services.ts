@@ -1,6 +1,9 @@
 import protectionAsset from "@/assets/service-protection.jpg.asset.json";
 import privacyAsset from "@/assets/service-privacy.jpg.asset.json";
 import successionAsset from "@/assets/service-succession.jpg.asset.json";
+import detailProtectionAsset from "@/assets/detail-protection.jpg.asset.json";
+import detailPrivacyAsset from "@/assets/detail-privacy.jpg.asset.json";
+import detailSuccessionAsset from "@/assets/detail-succession.jpg.asset.json";
 
 export type Service = {
   slug: string;
