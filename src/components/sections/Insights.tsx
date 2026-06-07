@@ -5,7 +5,7 @@ import governance from "@/assets/governance-infinity.jpg";
 import skyline from "@/assets/skyline-corporate.jpg";
 
 const stats = [
-  { value: 25, suffix: "+", label: "Years of combined advisory", img: governance },
+  { value: 20, suffix: "+", label: "Years of combined advisory", img: governance },
   { value: 100, suffix: "%", label: "Confidential by design", img: family },
   { value: 2, suffix: "", label: "Strategic jurisdictions", img: skyline },
 ];
