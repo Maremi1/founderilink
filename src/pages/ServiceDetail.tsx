@@ -129,7 +129,7 @@ const ServiceDetail = () => {
           </div>
           <div className="order-1 md:order-2">
             <img
-              src={service.image}
+src={service.detailImage}
               alt={`${service.title} detail`}
               width={1024}
               height={1024}

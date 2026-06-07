@@ -11,6 +11,7 @@ export type Service = {
   tagline: string;
   desc: string;
   image: string;
+  detailImage: string;
   icon: "ShieldCheck" | "EyeOff" | "GitBranch";
   highlights: { title: string; body: string }[];
   benefits: string[];
