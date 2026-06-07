@@ -45,6 +45,7 @@ export const services: Service[] = [
     desc: "Keep your estate entirely out of public records — discretion engineered into every layer.",
     image: privacyAsset.url,
     icon: "EyeOff",
+    detailImage: detailPrivacyAsset.url,
     highlights: [
       { title: "Off-Record Ownership", body: "Hold property and equity through nominee and fiduciary structures that remove your name from public registries." },
       { title: "Confidential Succession", body: "Transfer assets without probate exposure or media-readable filings." },
@@ -64,6 +65,7 @@ export const services: Service[] = [
     desc: "Prevent legal delays and reduce family disputes with crystal-clear, legally fortified transitions.",
     image: successionAsset.url,
     icon: "GitBranch",
+    detailImage: detailSuccessionAsset.url,
     highlights: [
       { title: "Probate-Free Transfer", body: "Move assets to heirs instantly upon trigger events — no court, no waiting." },
       { title: "Conflict Prevention", body: "Codified intent and neutral trusteeship prevent intra-family disputes before they begin." },
